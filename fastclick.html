@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast Click — ThanGame</title>
+<link rel="stylesheet" href="fast-click.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="mem-header">
+  <div class="mem-left">
+    <button id="backHomeBtn" class="btn">← Trang chủ</button>
+  </div>
+  <div class="mem-center">
+    <h1>Fast Click</h1>
+  </div>
+  <div class="mem-right">
+    <div class="user-inline">
+      <span id="playerNameDisplay">Người chơi</span>
+    </div>
+  </div>
+</header>
+
+<section class="fast-click-wrap">
+  <aside class="leaderboard">
+    <h2>BXH</h2>
+    <ol id="topScores"></ol>
+  </aside>
+
+  <div class="game-area">
+    <div class="info-bar">
+      <div class="info-item">
+        <div class="label">Điểm</div>
+        <div id="scoreDisplay">0</div>
+      </div>
+      <div class="info-item">
+        <div class="label">Thời gian</div>
+        <div id="timerDisplay">60</div>
+      </div>
+      <div class="info-item">
+        <button id="startBtn" class="btn">Bắt đầu</button>
+        <button id="resetBtn" class="btn">Chơi lại</button>
+      </div>
+    </div>
+
+    <div class="click-area" id="clickArea">
+      <!-- Circle sẽ xuất hiện tại đây -->
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal hidden" id="fcModal">
+  <div class="modal-card">
+    <h2 id="fcResultText"></h2>
+    <div class="modal-actions">
+      <button class="btn" id="fcRestart">Chơi lại</button>
+    </div>
+  </div>
+</div>
+
+<script src="fast-click.js"></script>
+</body>
+</html>

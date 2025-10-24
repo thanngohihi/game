@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Caro Online — ThanGame</title>
-<link rel="stylesheet" href="caro.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="caro.css">
 </head>
 <body>
 
-<!-- Phần chọn phòng -->
+<!-- Overlay chọn phòng -->
 <div class="overlay">
   <div class="room-selection" id="roomSection">
     <h1>Caro Online</h1>
@@ -62,6 +62,15 @@
     <h2 id="winnerText"></h2>
     <div class="modal-actions">
       <button class="btn" id="modalRestart">Chơi lại</button>
+    </div>
+  </div>
+</div>
+<!-- Modal thông báo lượt đầu -->
+<div class="modal hidden" id="firstTurnModal">
+  <div class="modal-card">
+    <h2 id="firstTurnText"></h2>
+    <div class="modal-actions">
+      <button class="btn" id="firstTurnOk">OK</button>
     </div>
   </div>
 </div>
