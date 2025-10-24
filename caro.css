@@ -1,28 +1,44 @@
 :root {
   --accent1: #ff6ec7;
   --accent2: #1de9b6;
-  --card-back: #2a2a2a;
-  --card-front: #ffffff;
-  --muted: #b0b0b0;
-  --glow: #ff00ff;
   --cell-bg: #222;
   --cell-hover: #333;
+  --muted: #b0b0b0;
 }
 
 * { box-sizing: border-box; }
-html, body { margin:0; height:100%; font-family:'Poppins',sans-serif; color:#fff; background: linear-gradient(135deg,#1b2735,#090a0f);}
+
+html, body {
+  margin:0; height:100%;
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+  background: linear-gradient(135deg,#1b2735,#090a0f);
+}
+
 body { display:flex; flex-direction: column; }
 
 /* Header */
 .mem-header {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:18px 24px; background: rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.2); backdrop-filter: blur(6px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 24px;
+  background: rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
 }
+.mem-left, .mem-center, .mem-right { display:flex; align-items:center; }
+.mem-left { flex:1; }
+.mem-center { flex:2; justify-content:center; }
+.mem-right { flex:1; justify-content:flex-end; }
 .mem-center h1 {
-  margin:0; font-size:24px; font-weight:700;
+  margin:0; font-size:26px; font-weight:700;
   background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
+
+/* Buttons */
 .btn {
   background: linear-gradient(90deg,var(--accent1),var(--accent2));
   color:#fff; border:none; padding:10px 16px; border-radius:20px; cursor:pointer; font-weight:700;
@@ -30,47 +46,204 @@ body { display:flex; flex-direction: column; }
 }
 .btn:hover { transform:scale(1.05); transition:0.2s; }
 .btn-ghost {
-  background: transparent; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; border-radius:20px; cursor:pointer; color:#fff;
+  background: transparent; border:1px solid rgba(255,255,255,0.4);
+  padding:8px 12px; border-radius:20px; cursor:pointer; color:#fff;
 }
 
-/* Info bar */
-.mem-info { display:flex; gap:14px; justify-content:center; padding:14px; }
-.info-item {
-  background: rgba(255,255,255,0.05); padding:12px 18px; border-radius:24px;
-  min-width:120px; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.3);
+/* Info Bar */
+.mem-info {
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  padding:14px;
+  flex-wrap:wrap;
 }
-.label { font-size:12px; color: var(--muted); margin-bottom:4px; font-weight:600; }
+.info-item {
+  background: rgba(255,255,255,0.05);
+  padding:12px 18px;
+  border-radius:24px;
+  min-width:120px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+.label {
+  font-size:12px;
+  color: var(--muted);
+  margin-bottom:4px;
+  font-weight:600;
+}
 
 /* Board */
-.board-wrap.full { flex:1; display:flex; align-items:center; justify-content:center; padding:18px; }
+.board-wrap.full {
+  flex:1; display:flex; align-items:center; justify-content:center; padding:18px;
+}
 .caro-board {
-  display:grid; grid-template-columns:repeat(5,80px); grid-template-rows:repeat(5,80px); gap:6px;
+  display:grid;
+  grid-template-columns:repeat(5,80px);
+  grid-template-rows:repeat(5,80px);
+  gap:6px;
 }
 .cell {
-  background: var(--cell-bg); border:2px solid var(--accent1); display:flex; justify-content:center; align-items:center; font-size:40px; font-weight:700; border-radius:8px; cursor:pointer; transition:0.2s;
+  background: var(--cell-bg);
+  border:2px solid var(--accent1);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  font-weight:700;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
 }
 .cell.disabled { cursor:not-allowed; opacity:0.5; }
-.cell:hover:not(.disabled) { background: var(--cell-hover); box-shadow:0 0 15px var(--accent2); }
+.cell:hover:not(.disabled) {
+  background: var(--cell-hover);
+  box-shadow:0 0 15px var(--accent2);
+}
 
 /* Overlay / Room selection */
-.overlay { position:fixed; inset:0; background: rgba(0,0,0,0.85); display:flex; justify-content:center; align-items:center; z-index:100; }
-.room-selection {
-  background: #222; padding:32px; border-radius:20px; display:flex; flex-direction:column; align-items:center;
-  box-shadow:0 0 30px rgba(255,110,199,0.5); text-align:center;
+.overlay {
+  position:fixed; inset:0;
+  background: rgba(0,0,0,0.85);
+  display:flex; justify-content:center; align-items:center;
+  z-index:100;
 }
-.room-selection h1 { font-size:28px; margin-bottom:20px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-.room-selection input { padding:10px 16px; font-size:16px; border-radius:12px; border:none; margin-bottom:20px; width:200px; text-align:center; }
+.room-selection {
+  background: #222;
+  padding:32px;
+  border-radius:20px;
+  display:flex; flex-direction:column; align-items:center;
+  box-shadow:0 0 30px rgba(255,110,199,0.5);
+  text-align:center;
+}
+.room-selection h1 {
+  font-size:28px;
+  margin-bottom:20px;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.room-selection input {
+  padding:10px 16px;
+  font-size:16px;
+  border-radius:12px;
+  border:none;
+  margin-bottom:20px;
+  width:220px;
+  text-align:center;
+}
 .btn-group { display:flex; gap:12px; }
 
 /* Modal */
-.modal { position:fixed; inset:0; display:flex; justify-content:center; align-items:center; background: rgba(0,0,0,0.8); z-index:50;}
-.modal.hidden { display:none;}
-.modal-card { background:#111; padding:24px; border-radius:24px; text-align:center; box-shadow:0 12px 40px var(--accent2); color:#fff; border:2px solid var(--accent1);}
-.modal-actions { display:flex; justify-content:center; gap:12px; margin-top:16px;}
+.modal {
+  position:fixed; inset:0;
+  display:flex; justify-content:center; align-items:center;
+  background: rgba(0,0,0,0.8);
+  z-index:50;
+}
+.modal.hidden { display:none; }
+.modal-card {
+  background:#111;
+  padding:24px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 12px 40px var(--accent2);
+  color:#fff;
+  border:2px solid var(--accent1);
+}
+.modal-actions { display:flex; justify-content:center; gap:12px; margin-top:16px; }
 
 /* Hidden */
 .hidden { display:none; }
 
 /* Responsive */
-@media(max-width:700px){.caro-board{gap:4px}.cell{font-size:32px}}
-@media(max-width:420px){.caro-board{gap:2px}.cell{font-size:28px}}
+@media(max-width:700px){
+  .caro-board{gap:4px}
+  .cell{font-size:32px; width:60px; height:60px;}
+  .mem-header { flex-direction:column; align-items:center; padding:16px;}
+  .mem-center { margin:8px 0;}
+}
+@media(max-width:420px){
+  .caro-board{gap:2px}
+  .cell{font-size:28px; width:50px; height:50px;}
+  .mem-header { padding:12px;}
+  .mem-center h1 { font-size:22px;}
+}
+/* Wrapper chứa bảng điểm + bàn cờ */
+.game-wrapper {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  padding: 16px;
+}
+
+/* Bảng điểm */
+.scoreboard {
+  width: 200px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.scoreboard h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.player-score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.player-name {
+  color: #fff;
+}
+
+.score {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Responsive cho điện thoại */
+@media(max-width:768px) {
+  .game-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .scoreboard {
+    width: 80%;
+    margin-bottom: 12px;
+  }
+}
+
+@media(max-width:420px) {
+  .scoreboard {
+    width: 100%;
+    padding: 12px;
+  }
+  .player-score {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .score {
+    font-size: 16px;
+  }
+}

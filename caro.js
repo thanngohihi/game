@@ -122,3 +122,16 @@ function resetGame(){
 
 // Khởi tạo
 createBoard();
+// Giả sử player là 'X' hoặc 'O'
+function updateScore(player) {
+  if(player === 'X') {
+    let scoreEl = document.getElementById("scorePlayer1");
+    scoreEl.textContent = parseInt(scoreEl.textContent) + 1;
+  } else {
+    let scoreEl = document.getElementById("scorePlayer2");
+    scoreEl.textContent = parseInt(scoreEl.textContent) + 1;
+  }
+}
+
+// Khi game kết thúc gọi:
+updateScore(winner); // winner là 'X' hoặc 'O'
