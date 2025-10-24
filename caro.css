@@ -54,7 +54,7 @@ body { display:flex; flex-direction: column; }
 .mem-info {
   display:flex;
   gap:14px;
-  justify-content:center;
+  justify-content:center; /* căn giữa */
   padding:14px;
   flex-wrap:wrap;
 }
@@ -76,8 +76,8 @@ body { display:flex; flex-direction: column; }
 /* Wrapper chứa bảng điểm + bàn cờ */
 .game-wrapper {
   display: flex;
-  justify-content: center; /* căn giữa theo ngang */
-  align-items: flex-start; /* căn theo trục dọc */
+  justify-content: center; /* căn giữa */
+  align-items: flex-start;
   flex: 1;
   gap: 24px;
   padding: 16px;
@@ -133,8 +133,8 @@ body { display:flex; flex-direction: column; }
 .board-wrap.full {
   flex: 1;
   display: flex;
-  justify-content:center; /* căn sang trái */
-  align-items: flex-start;     /* căn theo trục dọc */
+  justify-content:center; /* căn giữa */
+  align-items: flex-start;
 }
 .caro-board {
   display:grid;
