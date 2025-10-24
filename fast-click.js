@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     let time = 60;
     let interval = null;
-    let circleTimeout = null;
 
     function updateLeaderboard() {
         const scores = JSON.parse(localStorage.getItem('fastClickTop')) || [];
@@ -35,8 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const circle = document.createElement('div');
         circle.classList.add('circle');
 
-        const maxX = clickArea.clientWidth - 60;
-        const maxY = clickArea.clientHeight - 60;
+        const areaRect = clickArea.getBoundingClientRect();
+        const circleSize = circle.offsetWidth || 60; // kích thước circle
+        const maxX = areaRect.width - circleSize;
+        const maxY = areaRect.height - circleSize;
         const x = Math.random() * maxX;
         const y = Math.random() * maxY;
         circle.style.left = x + 'px';
@@ -59,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clickArea.innerHTML = '';
 
         if (interval) clearInterval(interval);
-        if (circleTimeout) clearTimeout(circleTimeout);
 
         spawnCircle();
 
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fcResultText.textContent = `Thời gian kết thúc! Điểm của bạn: ${score}`;
         fcModal.classList.remove('hidden');
 
-        // Cập nhật top scores
         const scores = JSON.parse(localStorage.getItem('fastClickTop')) || [];
         scores.push({name: localUser.username, score});
         scores.sort((a,b) => b.score - a.score);
