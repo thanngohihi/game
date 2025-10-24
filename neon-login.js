@@ -58,7 +58,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e){
 
         showNotification('Đăng nhập thành công!', 'success');
         setTimeout(()=>{
-            window.location.href = 'main.html';
+            window.location.href = 'index.html';
         }, 1000);
     } else {
         showNotification('Tên đăng nhập hoặc mật khẩu không đúng!', 'error');

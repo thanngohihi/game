@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   restartBtn.addEventListener('click',()=>{buildDeck();});
   playAgain.addEventListener('click',()=>{winModal.classList.add('hidden'); buildDeck();});
-  toHome.addEventListener('click',()=>{window.location.href='main.html';});
-  backBtn.addEventListener('click',()=>{window.location.href='main.html';});
+  toHome.addEventListener('click',()=>{window.location.href='index.html';});
+  backBtn.addEventListener('click',()=>{window.location.href='index.html';});
 
   buildDeck();
 });
