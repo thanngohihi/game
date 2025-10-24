@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Memory — ThanGame</title>
+<link rel="stylesheet" href="memory.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="mem-header">
+  <div class="mem-left">
+    <button id="backBtn" class="btn">← Trang Chủ</button>
+  </div>
+  <div class="mem-center"><h1>Memory</h1></div>
+  <div class="mem-right">
+    <div class="user-inline"><span id="memUsername">Player</span></div>
+  </div>
+</header>
+
+<main class="mem-main full">
+  <section class="mem-info">
+    <div class="info-item"><div class="label">Thời gian</div><div id="timer">00:00</div></div>
+    <div class="info-item"><div class="label">Lượt</div><div id="moves">0</div></div>
+    <div class="info-item"><button id="restartBtn" class="btn">Chơi lại</button></div>
+  </section>
+
+  <section class="board-wrap full">
+    <div id="board" class="board" aria-live="polite" aria-label="Bàn chơi Memory"></div>
+  </section>
+</main>
+
+<div id="winModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+  <div class="modal-card">
+    <h2 id="winTitle">Chúc mừng 🎉</h2>
+    <p>Bạn đã hoàn thành!</p>
+    <p>Thời gian: <strong id="finalTime">00:00</strong></p>
+    <p>Lượt: <strong id="finalMoves">0</strong></p>
+    <div class="modal-actions">
+      <button id="playAgain" class="btn">Chơi lại</button>
+      <button id="toHome" class="btn-ghost">Về trang chính</button>
+    </div>
+  </div>
+</div>
+
+<script src="memory.js"></script>
+</body>
+</html>

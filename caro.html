@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caro Online — ThanGame</title>
+<link rel="stylesheet" href="caro.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Phần chọn phòng -->
+<div class="overlay">
+  <div class="room-selection" id="roomSection">
+    <h1>Caro Online</h1>
+    <input type="text" id="roomInput" placeholder="Nhập mã phòng">
+    <div class="btn-group">
+      <button class="btn" id="joinRoomBtn">Tham gia phòng</button>
+      <button class="btn" id="createRoomBtn">Tạo phòng mới</button>
+    </div>
+  </div>
+</div>
+
+<!-- Phần chơi -->
+<section class="caro-board-wrap hidden" id="gameSection">
+  <header class="mem-header">
+    <div class="mem-left">
+      <button id="backHomeBtn" class="btn">← Trang chủ</button>
+    </div>
+    <div class="mem-center">
+      <h1>Caro Online</h1>
+    </div>
+    <div class="mem-right">
+      <div class="user-inline">
+        <span id="playerNameDisplay">Player 1</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="mem-info">
+    <div class="info-item">
+      <div class="label">Phòng</div>
+      <div id="roomCodeDisplay">---</div>
+    </div>
+    <div class="info-item">
+      <div class="label">Lượt</div>
+      <div id="currentPlayerDisplay">X</div>
+    </div>
+    <div class="info-item">
+      <button id="resetGameBtn" class="btn">Chơi lại</button>
+    </div>
+  </section>
+
+  <section class="board-wrap full">
+    <div class="caro-board" id="caroBoard"></div>
+  </section>
+</section>
+
+<!-- Modal -->
+<div class="modal hidden" id="caroModal">
+  <div class="modal-card">
+    <h2 id="winnerText"></h2>
+    <div class="modal-actions">
+      <button class="btn" id="modalRestart">Chơi lại</button>
+    </div>
+  </div>
+</div>
+
+<script src="caro-online.js"></script>
+</body>
+</html>
