@@ -8,21 +8,12 @@
 <link rel="stylesheet" href="caro.css">
 </head>
 <body>
-  <!-- Modal lỗi -->
-<div class="modal hidden" id="errorModal">
-  <div class="modal-card">
-    <h2 id="errorText"></h2>
-    <div class="modal-actions">
-      <button class="btn" id="errorOk">OK</button>
-    </div>
-  </div>
-</div>
 
 <!-- Overlay chọn phòng -->
 <div class="overlay">
   <div class="room-selection" id="roomSection">
     <h1>Caro Online</h1>
-    <div id="errorMsg" class="error-msg hidden"></div> <!-- Thêm div thông báo lỗi -->
+    <div id="errorMsg" class="error-msg hidden"></div> <!-- Thông báo lỗi -->
     <input type="text" id="roomInput" placeholder="Nhập mã phòng">
     <div class="btn-group">
       <button class="btn" id="joinRoomBtn">Tham gia phòng</button>
@@ -62,7 +53,7 @@
   </section>
 
   <section class="game-wrapper">
-    <!-- Bảng điểm -->
+    <!-- Bảng điểm bên trái -->
     <aside class="scoreboard">
       <h2>Bảng điểm</h2>
       <div class="player-score">
@@ -82,7 +73,7 @@
   </section>
 </section>
 
-<!-- Modal thắng/thua -->
+<!-- Modal thắng/hòa -->
 <div class="modal hidden" id="caroModal">
   <div class="modal-card">
     <h2 id="winnerText"></h2>
@@ -92,7 +83,7 @@
   </div>
 </div>
 
-<!-- Modal lượt đầu -->
+<!-- Modal thông báo lượt đầu -->
 <div class="modal hidden" id="firstTurnModal">
   <div class="modal-card">
     <h2 id="firstTurnText"></h2>
