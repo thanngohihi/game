@@ -11,18 +11,40 @@ body { display:flex; flex-direction: column; }
 
 /* Header */
 .mem-header {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:16px 24px; background:rgba(255,255,255,0.05);
-  border-bottom:1px solid rgba(255,255,255,0.2); backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
 }
-.mem-left, .mem-center, .mem-right { display:flex; align-items:center; }
-.mem-left { flex:1; } .mem-center { flex:2; justify-content:center; }
-.mem-right { flex:1; justify-content:flex-end; }
+
+.mem-left, .mem-center, .mem-right {
+  display: flex;
+  align-items: center;
+}
+
+.mem-left, .mem-right {
+  flex: 0 0 auto;  /* Chỉ vừa đủ chứa nội dung */
+}
+
+.mem-center {
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0; /* Cho phép tiêu đề co lại khi màn hình nhỏ */
+}
+
 .mem-center h1 {
-  margin:0; font-size:26px; font-weight:700;
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
   background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap; /* Không xuống dòng */
 }
+
 
 /* Buttons */
 .btn {
