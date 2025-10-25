@@ -1,17 +1,15 @@
-/* file: neon-style.css */
-
 /* Body và form */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
   background: #0a0a0f;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Nền gradient animation */
@@ -20,9 +18,9 @@ body:before {
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.25), transparent 40%),
-              radial-gradient(circle at 80% 30%, rgba(0,150,255,0.25), transparent 40%),
-              radial-gradient(circle at 50% 80%, rgba(0,200,255,0.25), transparent 40%);
+  background: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 40%),
+              radial-gradient(circle at 80% 30%, rgba(0,150,255,0.15), transparent 40%),
+              radial-gradient(circle at 50% 80%, rgba(0,200,255,0.15), transparent 40%);
   animation: moveBg 12s linear infinite;
   z-index: -1;
 }
@@ -36,67 +34,75 @@ body:before {
 .login-box, .register-box {
   background: rgba(15, 15, 30, 0.9);
   border: 1px solid rgba(0, 255, 200, 0.2);
-  box-shadow: 0 0 25px rgba(0, 255, 200, 0.2), 0 0 60px rgba(0, 120, 255, 0.2);
-  border-radius: 15px;
-  padding: 40px;
-  width: 350px;
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.15), 0 0 40px rgba(0, 120, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 360px;
   color: #fff;
   text-align: center;
 }
 
 h2 {
-  margin-bottom: 25px;
-  font-size: 26px;
+  margin-bottom: 20px;
+  font-size: 22px;
   color: #00f5ff;
-  text-shadow: 0 0 10px #00f5ff;
+  text-shadow: 0 0 6px #00f5ff;
 }
 
-.input-box { margin-bottom: 20px; text-align: left; }
-.input-box label { font-size: 14px; color: #aee; }
+.input-box { margin-bottom: 16px; text-align: left; }
+.input-box label { font-size: 13px; color: #aee; }
 .input-box input {
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
+  padding: 10px;
+  margin-top: 4px;
   border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.09);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
   outline: none;
-  font-size: 15px;
-  box-shadow: inset 0 0 8px rgba(0,255,200,0.15);
+  font-size: 14px;
+  box-shadow: inset 0 0 6px rgba(0,255,200,0.1);
   transition: 0.3s;
 }
 .input-box input:focus {
-  box-shadow: 0 0 10px rgba(0,255,200,0.5), inset 0 0 8px rgba(0,255,200,0.15);
-  border: 1px solid rgba(0,255,200,0.5);
+  box-shadow: 0 0 8px rgba(0,255,200,0.4), inset 0 0 6px rgba(0,255,200,0.1);
+  border: 1px solid rgba(0,255,200,0.3);
 }
 
 .btn {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background: linear-gradient(45deg, #00f5ff, #0077ff);
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
-.btn:hover { box-shadow: 0 0 15px #00f5ff; transform: translateY(-1px); }
+.btn:hover { box-shadow: 0 0 10px #00f5ff; transform: translateY(-1px); }
 
 .register-link, .login-link {
-  margin-top: 18px;
-  font-size: 14px;
+  margin-top: 14px;
+  font-size: 13px;
 }
 .register-link a, .login-link a { color: #00f5ff; text-decoration: none; }
-.register-link a:hover, .login-link a:hover { text-shadow: 0 0 8px #00f5ff; }
+.register-link a:hover, .login-link a:hover { text-shadow: 0 0 6px #00f5ff; }
 
-/* Notification Neon */
 #notification {
   animation: glowPulse 1.2s infinite alternate;
 }
 @keyframes glowPulse {
-  0% { box-shadow: 0 0 5px #00f5ff, 0 0 15px #00f5ff; }
-  100% { box-shadow: 0 0 15px #00f5ff, 0 0 25px #00f5ff; }
+  0% { box-shadow: 0 0 4px #00f5ff, 0 0 12px #00f5ff; }
+  100% { box-shadow: 0 0 10px #00f5ff, 0 0 18px #00f5ff; }
+}
+
+/* Responsive Mobile */
+@media(max-width: 480px){
+  h2 { font-size: 20px; }
+  .input-box input { font-size: 13px; padding: 8px; }
+  .btn { font-size: 14px; padding: 9px; }
+  .register-link, .login-link { font-size: 12px; }
 }
