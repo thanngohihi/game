@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const boardSize = 5;
   const boardEl = document.getElementById('caroBoard');
-  const gameSection = document.getElementById('gameSection');
   const overlay = document.getElementById('overlay');
   const roomInput = document.getElementById('roomInput');
   const joinRoomBtn = document.getElementById('joinRoomBtn');
@@ -16,10 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalRestart = document.getElementById('modalRestart');
   const errorText = document.getElementById('errorText');
 
+  const scorePlayer1El = document.getElementById('scorePlayer1');
+  const scorePlayer2El = document.getElementById('scorePlayer2');
+  const player1NameEl = document.getElementById('player1Name');
+  const player2NameEl = document.getElementById('player2Name');
+
   let roomCode = null, player1 = null, player2 = null;
   let cells = [], currentPlayer = null, gameOver = false;
+  let scores = { player1: 0, player2: 0 };
 
-  // Lấy tên người dùng đăng nhập từ localStorage
+  // Lấy tên người dùng đăng nhập từ trang chính
   const localUser = JSON.parse(localStorage.getItem('currentUser')) || { username: 'Player' };
 
   function generateRoomCode() {
@@ -45,13 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
       boardEl.appendChild(cell);
       cells.push(cell);
     }
+
     updateDisplay();
     updateBoardLock();
   }
 
   function handleClick(e) {
     if (gameOver || !player1 || !player2 || !isUserTurn()) return;
-
     const cell = e.target;
     if (cell.textContent) return;
 
@@ -59,13 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBoard();
 
     if (checkWin(currentPlayer)) {
-      showModal(`${currentPlayer} thắng!`);
       gameOver = true;
+      if (currentPlayer === 'X') scores.player1++;
+      else scores.player2++;
+      updateScores();
+      showModal(`${currentPlayer === 'X' ? player1.username : player2.username} thắng!`);
+      saveRoomData();
       return;
     }
+
     if (cells.every(c => c.textContent)) {
-      showModal('Hòa!');
       gameOver = true;
+      showModal('Hòa!');
+      saveRoomData();
       return;
     }
 
@@ -134,6 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPlayerDisplay.textContent = currentPlayer
       ? (currentPlayer === 'X' ? player1.username : player2.username) + ' (' + currentPlayer + ')'
       : 'Chờ người chơi thứ 2';
+    updateScores();
+  }
+
+  function updateScores() {
+    player1NameEl.textContent = player1?.username || '---';
+    player2NameEl.textContent = player2?.username || '---';
+    scorePlayer1El.textContent = scores.player1;
+    scorePlayer2El.textContent = scores.player2;
   }
 
   function updateBoardLock() {
@@ -158,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveRoomData() {
     if (!roomCode) return;
-    const data = { player1, player2, currentPlayer, cells: cells.map(c => c.textContent) };
+    const data = { player1, player2, currentPlayer, cells: cells.map(c => c.textContent), scores };
     localStorage.setItem('caro_' + roomCode, JSON.stringify(data));
   }
 
@@ -168,22 +187,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function saveBoard() { if (roomCode) saveRoomData(); }
 
-  // Tạo phòng
   createRoomBtn.addEventListener('click', () => {
     roomCode = generateRoomCode();
     player1 = localUser;
     player2 = null;
+    scores = { player1: 0, player2: 0 };
     roomCodeDisplay.textContent = roomCode;
     overlay.classList.add('hidden');
     gameSection.classList.remove('hidden');
     currentPlayer = 'X';
     saveRoomData();
     createBoard();
-    joinRoomBtn.style.display = 'none';
-    createRoomBtn.style.display = 'none';
   });
 
-  // Tham gia phòng
   joinRoomBtn.addEventListener('click', () => {
     const input = roomInput.value.trim().toUpperCase();
     if (!input) { errorText.textContent = 'Vui lòng nhập mã phòng'; errorText.classList.remove('hidden'); return; }
@@ -195,16 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
     player1 = data.player1;
     player2 = localUser;
     currentPlayer = data.currentPlayer || 'X';
+    scores = data.scores || { player1: 0, player2: 0 };
     saveRoomData();
     roomCodeDisplay.textContent = roomCode;
     overlay.classList.add('hidden');
     gameSection.classList.remove('hidden');
     createBoard();
-    joinRoomBtn.style.display = 'none';
-    createRoomBtn.style.display = 'none';
   });
 
-  backHomeBtn.addEventListener('click', () => location.reload());
+  backHomeBtn.addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
+
 
   resetGameBtn.addEventListener('click', () => {
     cells.forEach(c => c.textContent = '');
@@ -225,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBoardLock();
   });
 
-  // Đồng bộ qua localStorage cho nhiều tab
   window.addEventListener('storage', (e) => {
     if (e.key === 'caro_' + roomCode) {
       const data = JSON.parse(e.newValue);
@@ -233,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
       player1 = data.player1;
       player2 = data.player2;
       currentPlayer = data.currentPlayer;
+      scores = data.scores || { player1: 0, player2: 0 };
       cells.forEach((c, i) => c.textContent = data.cells[i]);
       updateDisplay();
       updateBoardLock();
